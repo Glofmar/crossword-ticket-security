@@ -1,0 +1,25 @@
+# Settings used to train the two models.
+
+detector:
+  base_model: yolov8n-obb.pt   # pretrained weights, downloaded by ultralytics
+  epochs: 25
+  image_size: 640
+  batch: 8
+  device: cpu
+  workers: 2
+  seed: 0
+
+cells:
+  image_size: 32
+  batch_size: 128
+  epochs: 50
+  learning_rate: 0.001
+  val_ratio: 0.2
+  # stop after this many epochs without a better validation accuracy
+  patience: 8
+  plateau_patience: 3
+  plateau_factor: 0.5
+  seed: 42
+  augment_rotation_deg: 5
+  augment_brightness: 0.3
+  augment_contrast: 0.3

@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+
+# Models, datasets and outputs are never versioned (see models/README.md, data/README.md)
+models/*
+!models/README.md
+data/*
+!data/README.md
+datasets/
+
+# Descriptions of real cards stay local
+configs/local/
+results/
+runs/
+*.pt
+*.pth
+*.mp4

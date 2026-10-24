@@ -1,0 +1,39 @@
+# Example game: a made-up crossword scratch card.
+# Copy this file to describe a real card. Paths are relative to the repository root.
+
+layout:
+  grid: {rows: 9, cols: 9, min_word_length: 2}
+  draw: {rows: 2, cols: 6}   # hidden letters
+
+alphabet: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+vowels: AEIOU
+dictionary: data/dictionary.txt
+# completed words -> prize
+payout: {3: 1, 4: 2, 5: 5, 6: 20, 7: 100, 8: 1000}
+
+# A reading is kept only if every rule holds (rules are listed in crosswordsec/rules.py).
+rules:
+  grid:
+    - {rule: word_count, equals: 16}
+    - {rule: words_in_dictionary, min: 1.0}
+  draw:
+    - {rule: letter_count, equals: 12}
+    - {rule: distinct_letters, equals: 12}
+    - {rule: vowels, min: 2}
+    - {rule: letters_outside_grid, max: 0}
+    - {rule: completed_words, min: 1}
+
+# Colours of the card, HSV as in OpenCV (H 0-179, S and V 0-255).
+appearance:
+  grid_background_hsv: {low: [100, 80, 60], high: [130, 255, 255]}
+  grid_background_hsv_loose: {low: [95, 60, 50], high: [135, 255, 255]}
+  grid_border_hsv: {low: [0, 120, 80], high: [8, 255, 255]}
+  draw_hidden_hsv: {low: [20, 100, 100], high: [35, 255, 255]}
+  # inside a cell column, background pixels have this BGR channel dominant
+  cell_background: {channel: 0, min_value: 60, dominance: 1.15}
+
+models:
+  detector: models/detector_obb.pt
+  detector_draw_class: draw_panel
+  cells: models/cells.pth
+  empty_class: EMPTY

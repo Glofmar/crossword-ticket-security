@@ -1,0 +1,78 @@
+# Processing parameters. Sizes are in pixels.
+
+runtime:
+  torch_threads: 4
+
+scan:
+  step_s: 1.2
+  # how long after a grid we keep looking for its draw panel
+  draw_window_s: 421.0
+  # a grid this close to an already extracted one is the same ticket shown again
+  duplicate_max_cells: 10
+
+grid_locate:
+  open_kernel: 5
+  min_area_ratio: 0.05
+  margin_ratio: 0.06
+
+grid_border:
+  # if fewer border pixels are found, the grid colour is used instead
+  min_border_pixels: 200
+  close_kernel: 11
+  open_kernel: 5
+  blur_kernel: 5
+  canny_low: 50
+  canny_high: 150
+  hough_rho: 1
+  hough_theta_deg: 1
+  hough_threshold: 40
+  hough_min_line_length: 50
+  hough_max_line_gap: 20
+  # segments closer than this (angle and distance) are the same side
+  duplicate_angle_deg: 15
+  duplicate_distance: 60
+  approx_epsilon_ratio: 0.02
+
+# The 4 sides of the grid are scaled to put the image edges right on the border.
+# See _margin_cost in grid.py for how the weights are used.
+grid_margins:
+  bounds: [0.8, 1.1]
+  max_iter: 25
+  ftol: 0.001
+  sample_size: 150
+  sobel_kernel: 3
+  edge_band: 2
+  edge_weight: 2000
+  edge_epsilon: 0.1
+  margin_weight: 500
+  background_band: 5
+  background_min_ratio: 0.02
+  background_penalty: 20000
+
+grid_sharpen:
+  sigma: 3
+  amount: 0.5
+
+grid_cells:
+  column_search_ratio: 0.05
+  row_search_ratio: 0.03
+  # narrower cells are widened (11/15 of the regular size)
+  min_cell_ratio: 0.7333333333333333
+  pad: 2
+  background_min_row_ratio: 0.15
+
+draw_detect:
+  min_confidence: 0.6
+  min_width: 150
+  min_height: 30
+
+draw_cells:
+  threshold_block: 11
+  threshold_c: 2
+  row_search: 0.4
+  col_search: 0.25
+  smoothing: 5
+  pad: 3
+  min_cell_probability: 0.35
+  # above this share of "unscratched" colour, a cell is not scratched yet
+  max_hidden_ratio: 0.25

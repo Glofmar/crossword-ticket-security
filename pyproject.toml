@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crosswordsec"
+version = "0.1.0"
+description = "Computer-vision extraction and statistical audit of crossword-style scratch cards"
+requires-python = ">=3.10"
+license = "AGPL-3.0-only"
+license-files = ["LICENSE"]
+dependencies = [
+    "numpy",
+    "opencv-python-headless",
+    "pillow",
+    "pyyaml",
+    "scipy",
+    "torch",
+    "torchvision",
+    "ultralytics",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+crosswordsec-extract = "crosswordsec.extract:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
