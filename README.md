@@ -134,3 +134,10 @@ All results were checked by running the code on real data.
 AGPL-3.0, see [LICENSE](LICENSE). The detector is trained and run with
 [Ultralytics](https://github.com/ultralytics/ultralytics), which is itself released
 under AGPL-3.0.
+
+## Authors
+
+This project was developed by:
+
+- **Benjamin Fersztand** – [GitHub](https://github.com/benjaminfersztand) · [LinkedIn](https://www.linkedin.com/in/benjamin-fersztand-446ab3386/)
+- **Glofmar** – [GitHub](https://github.com/Glofmar)
